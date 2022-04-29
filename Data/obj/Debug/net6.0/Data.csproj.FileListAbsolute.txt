@@ -1,0 +1,12 @@
+C:\Users\us_feltr_ext\RiderProjects\Quote\Data\bin\Debug\net6.0\Data.deps.json
+C:\Users\us_feltr_ext\RiderProjects\Quote\Data\bin\Debug\net6.0\Data.dll
+C:\Users\us_feltr_ext\RiderProjects\Quote\Data\bin\Debug\net6.0\ref\Data.dll
+C:\Users\us_feltr_ext\RiderProjects\Quote\Data\bin\Debug\net6.0\Data.pdb
+C:\Users\us_feltr_ext\RiderProjects\Quote\Data\obj\Debug\net6.0\Data.csproj.AssemblyReference.cache
+C:\Users\us_feltr_ext\RiderProjects\Quote\Data\obj\Debug\net6.0\Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\us_feltr_ext\RiderProjects\Quote\Data\obj\Debug\net6.0\Data.AssemblyInfoInputs.cache
+C:\Users\us_feltr_ext\RiderProjects\Quote\Data\obj\Debug\net6.0\Data.AssemblyInfo.cs
+C:\Users\us_feltr_ext\RiderProjects\Quote\Data\obj\Debug\net6.0\Data.csproj.CoreCompileInputs.cache
+C:\Users\us_feltr_ext\RiderProjects\Quote\Data\obj\Debug\net6.0\Data.dll
+C:\Users\us_feltr_ext\RiderProjects\Quote\Data\obj\Debug\net6.0\ref\Data.dll
+C:\Users\us_feltr_ext\RiderProjects\Quote\Data\obj\Debug\net6.0\Data.pdb

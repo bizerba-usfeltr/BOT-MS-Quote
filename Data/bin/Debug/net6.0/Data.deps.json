@@ -1,0 +1,41 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Data/1.0.0": {
+        "dependencies": {
+          "Bes.Standard.Logging": "1.1.0"
+        },
+        "runtime": {
+          "Data.dll": {}
+        }
+      },
+      "Bes.Standard.Logging/1.1.0": {
+        "runtime": {
+          "lib/netstandard2.0/Bes.Standard.Logging.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Bes.Standard.Logging/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-y28MMeaY7mvPiq24Docyhrw9OKNwIiqcBcc/voO2U73iL08jExXTg1OC3oQb5EfH8M3hGVhYkeTxJSBjAO7nCg==",
+      "path": "bes.standard.logging/1.1.0",
+      "hashPath": "bes.standard.logging.1.1.0.nupkg.sha512"
+    }
+  }
+}

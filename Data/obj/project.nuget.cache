@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "jDrOMu15Ycd5tlGzQMP0YwIVNVculcL2kKJDqD7J2lRFuyZelUXswgXrf78Go1m7GPzNEDldYNwgt568aTtncQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\us_feltr_ext\\RiderProjects\\Quote\\Data\\Data.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\us_feltr_ext\\.nuget\\packages\\bes.standard.logging\\1.1.0\\bes.standard.logging.1.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}

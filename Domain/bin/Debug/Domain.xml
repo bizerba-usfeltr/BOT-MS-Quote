@@ -1,0 +1,369 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Domain</name>
+    </assembly>
+    <members>
+        <member name="M:Domain.Controllers.LineItemController.CreateLineItem(Domain.DTOs.InputLineItemDTO,System.Guid)">
+            <summary>
+            Creates a line item 
+            </summary>
+            <param name="item">details of the line item to save input by the user</param>
+            <param name="quoteId">The id of the quote the line item will be added to</param>
+            <returns></returns>
+        </member>
+        <member name="M:Domain.Controllers.LineItemController.GetLineItem(System.Guid,System.Guid)">
+            <summary>
+            Get a single line item
+            </summary>
+            <param name="quoteId">id of the quote the line items must be from</param>
+            <param name="itemId">the id of the line item</param>
+            <returns></returns>
+        </member>
+        <member name="M:Domain.Controllers.LineItemController.GetLineItems(System.Guid)">
+            <summary>
+            Get all the line items that belong to the quote based on the quote id 
+            </summary>
+            <param name="quoteId">id of the quote the line items must be from</param>
+            <returns></returns>
+        </member>
+        <member name="M:Domain.Controllers.LineItemController.UpdateLineItem(Domain.DTOs.InputLineItemDTO,System.Guid,System.Guid)">
+            <summary>
+            Updates all fields of a line item if the line item id exists and creates an item with that id if it doesn't 
+            </summary>
+            <param name="itemInput">details of the line item to save input by the user</param>
+            <param name="quoteId">The id of the quote the line item belongs to or will be added to</param>
+            <param name="itemId">The id of the line item to be updated</param>
+            <returns></returns>
+        </member>
+        <member name="M:Domain.Controllers.LineItemController.DeleteLineItem(System.Guid,System.Guid,Data.Models.Quote)">
+            <summary>
+            Delete a line item from a quote. This is only allowed if the quote has more than one line item
+            </summary>
+            <param name="itemId">the id of the line item to delete</param>
+            <param name="quoteId">the id of the quote the line item is being deleted from</param>
+            <param name="quote">the quote the line item belongs to</param>
+            <returns></returns>
+        </member>
+        <member name="M:Domain.Controllers.QuoteController.CreateQuote(Domain.DTOs.QuoteInputDTO)">
+            <summary>
+            Creates a new quote
+            </summary>
+            <param name="quote">the user input quote fields creating a new quote</param>
+            <returns>An output quote DTO </returns>
+        </member>
+        <member name="M:Domain.Controllers.QuoteController.GetQuote(System.Guid)">
+            <summary>
+            Get a single quote based on the id of the record in the db
+            </summary>
+            <param name="quoteId">id used as primary key of the quote to get</param>
+            <returns>An output quote DTO </returns>
+        </member>
+        <member name="M:Domain.Controllers.QuoteController.GetQuotes(Infrastructure.ResourceParameters.QuoteResourceParams)">
+            <summary>
+            Get a list of all quotes that match the search and filter parameters sent on the quary string
+            </summary>
+            <param name="quoteResourceParams">string parameters to search and filter results by:
+            QuoteNumber, QuotedBy, Type, SecondaryType, CustomerName, MOName </param>
+            <returns>A IEnumerable of quotes that match the search and filter parameters</returns>
+        </member>
+        <member name="M:Domain.Controllers.QuoteController.UpdateQuote(Domain.DTOs.QuoteUpdateDTO,System.Guid)">
+            <summary>
+            Updates all fields of a quote. Any fields that have not been given a value will be assigned its default value.
+            If the id of the quote doesn't exist, a quote with that id and the input values will be created 
+            </summary>
+            <param name="quoteInput">the user input quote fields updating an existing quote</param>
+            <param name="quoteId">the id of the quote to be updated</param>
+            <returns></returns>
+        </member>
+        <member name="M:Domain.Controllers.QuoteController.UpdateQuote(Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{Domain.DTOs.QuoteInputDTO},System.Guid)">
+            <summary>
+            Updates the fields of the quote present in the patch document. Fields not in the document will not be changed
+            </summary>
+            <param name="quoteInput">Patch document with the user input quote fields to be updated on an existing quote</param>
+            <param name="quoteId">The id of the quote to be updated</param>
+            <returns></returns>
+        </member>
+        <member name="P:Domain.DTOs.AuditOutputDTO.EditorName">
+            <summary>
+            The name of the person that made the changes
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.AuditOutputDTO.EditDate">
+            <summary>
+            When the changes were made on
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.AuditOutputDTO.Changes">
+            <summary>
+            What changes were made: field, old value and new value
+            </summary>
+        </member>
+        <member name="T:Domain.DTOs.ChangesOutputDOT">
+            <summary>
+            A record of changes to a field
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.ChangesOutputDOT.FieldName">
+            <summary>
+            The name of the field that was changed
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.ChangesOutputDOT.OldValue">
+            <summary>
+            The old value before it was changed
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.ChangesOutputDOT.NewValue">
+            <summary>
+            The new value after the change was saved
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.InputCustomerDTO.CustomerName">
+            <summary>
+            Name of the customer organization
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.InputCustomerDTO.CustomerCountry">
+            <summary>
+            Country the customer site is in
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.InputCustomerDTO.CustomerLocation">
+            <summary>
+            Location of the customer site
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.InputLineItemDTO.LineItemId">
+            <summary>
+            Id of the line item record in the db, used as unique identifier (pk,fk)
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.InputLineItemDTO.PartNumber">
+            <summary>
+            Identification number of the product 
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.InputLineItemDTO.Quantity">
+            <summary>
+            How many of the specific parts will be covered in a quote
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.InputLineItemDTO.ItemPrice">
+            <summary>
+            Total price of the line item. May be the same as the quote total if there it only one line item 
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.InputLineItemDTO.Description">
+            <summary>
+            Description of the item and work to be done
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.InputLineItemDTO.Conditions">
+            <summary>
+            Any disclaimers or conditions that stipulate the scope of the product and/or work covered in this line item 
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:Domain.DTOs.InputLineItemDTO.ClassDesignation" -->
+        <member name="P:Domain.DTOs.InputLineItemDTO.LeadTime">
+            <summary>
+            An estimation of how long fulfilling this line item will take
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.InputLineItemDTO.QuoteId">
+            <summary>
+            The Id of Quote the line item belongs to
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.OutputLineItemDTO.LineItemId">
+            <summary>
+            Id of the line item record in the db, used as unique identifier (pk,fk)
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.OutputLineItemDTO.PartNumber">
+            <summary>
+            Identification number of the product 
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.OutputLineItemDTO.Quantity">
+            <summary>
+            How many of the specific parts will be covered in a quote
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.OutputLineItemDTO.ItemPrice">
+            <summary>
+            Total price of the line item. May be the same as the quote total if there it only one line item 
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.OutputLineItemDTO.Description">
+            <summary>
+            Description of the item and work to be done
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.OutputLineItemDTO.Conditions">
+            <summary>
+            Any disclaimers or conditions that stipulate the scope of the product and/or work covered in this line item 
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:Domain.DTOs.OutputLineItemDTO.ClassDesignation" -->
+        <member name="P:Domain.DTOs.OutputLineItemDTO.LeadTime">
+            <summary>
+            An estimation of how long fulfilling this line item will take
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.QuoteInputDTO.QuoteNumber">
+            <summary>
+            The number used for identifying the quote by users.
+            This number will be the same in the budget and the project
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.QuoteInputDTO.QuotedByName">
+            <summary>
+             Person who created the quote.
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.QuoteInputDTO.ContactName">
+            <summary>
+            Person qho created the quote and is the point of contact regarding the quote.
+            May or may not be the pm on the project.
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.QuoteInputDTO.ContactEmail">
+            <summary>
+            The contact persons email address 
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.QuoteInputDTO.QuoteDate">
+            <summary>
+            Date the quote was created
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.QuoteInputDTO.QuotePrimaryType">
+            <summary>
+            The type of job it is: Checkweigher, Industrial System, Labeling, Logistics, Marketing
+            Metal Detector, Retail, Software, Vision, X-Ray
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.QuoteInputDTO.QuoteSecondaryType">
+            <summary>
+            Optional secondary type of job it is
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.QuoteInputDTO.QuoteTotal">
+            <summary>
+            Grand Total price of the Quote
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.QuoteInputDTO.ExtCustomerName">
+            <summary>
+            The external end customer ie Cargill Springdale
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.QuoteInputDTO.ExtCustomerLocation">
+            <summary>
+            The external end customers country and location
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.QuoteInputDTO.MOCustomerName">
+            <summary>
+            Material organization. the main customer for the quote ie Bizerba Germany
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.QuoteInputDTO.MOCustomerLocation">
+            <summary>
+            Material organizations country and location
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.QuoteInputDTO.QuoteExpiration">
+            <summary>
+            The date the quote is valid till, typically 90 days
+            If a quote is pasted this data it can be recertified by the quoter or pm
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.QuoteInputDTO.LineItems">
+            <summary>
+            A summary of work and materials the quote covers.
+            typically only one line item per quote but there can be more
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.OutputQuoteDTO.QuoteId">
+            <summary>
+            Id of the quote record in the db, used as unique identifier (pk,fk)
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.OutputQuoteDTO.QuoteNumber">
+            <summary>
+            The number used for identifying the quote by users.
+            This number will be the same in the budget and the project
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.OutputQuoteDTO.QuotedByName">
+            <summary>
+            Person who created the quote.
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.OutputQuoteDTO.ContactName">
+            <summary>
+            Person who requested the quote and is the point of contact regarding the quote.
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.OutputQuoteDTO.ContactEmail">
+            <summary>
+            The contact persons email address 
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.OutputQuoteDTO.QuoteDate">
+            <summary>
+            Date the quote was created
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.OutputQuoteDTO.QuotePrimaryType">
+            <summary>
+            The type of job it is: Checkweigher, Industrial System, Labeling, Logistics, Marketing
+            Metal Detector, Retail, Software, Vision, X-Ray
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.OutputQuoteDTO.QuoteSecondaryType">
+            <summary>
+            Optional secondary type of job it is
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.OutputQuoteDTO.QuoteTotal">
+            <summary>
+            Grand Total price of the Quote
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.OutputQuoteDTO.ExtCustomerName">
+            <summary>
+            The external end customer ie Cargill Springdale
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.OutputQuoteDTO.ExtCustomerLocation">
+            <summary>
+            The external end customers country and location
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.OutputQuoteDTO.MOCustomerName">
+            <summary>
+            Material organization. the main customer for the quote ie Bizerba Germany
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.OutputQuoteDTO.MOCustomerLocation">
+            <summary>
+            Material organizations country and location
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.OutputQuoteDTO.QuoteExpiration">
+            <summary>
+            The date the quote is valid till, typically 90 days from the creation date
+            If a quote is passed this data it can be re-certified as valid for another period by the quoter or pm
+            </summary>
+        </member>
+        <member name="P:Domain.DTOs.OutputQuoteDTO.LineItems">
+            <summary>
+            A summary of work and materials the quote covers.
+            typically only one line item per quote but there can be more
+            </summary>
+        </member>
+    </members>
+</doc>

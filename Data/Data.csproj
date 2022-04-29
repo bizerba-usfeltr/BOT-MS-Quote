@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="Contracts" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Bes.Standard.Logging" Version="1.1.0" />
+    </ItemGroup>
+
+</Project>
