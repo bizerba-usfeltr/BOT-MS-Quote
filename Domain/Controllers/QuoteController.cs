@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography;
-using AutoMapper;
+﻿using AutoMapper;
 using Data.Models;
 using Domain.DTOs;
 using Infrastructure.Repos;
@@ -10,6 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Domain.Controllers;
 
+/// <summary>
+/// Controller containing endpoints pertaining to quotes
+/// </summary>
 [ApiController]
 [Route("api/quotes")]
 [Produces(contentType: "application/json", "application/xml")]
@@ -47,6 +49,16 @@ public class QuoteController : ControllerBase
     public ActionResult<OutputQuoteDTO> CreateQuote(QuoteInputDTO quote)
     {
         var quoteEntity = _mapper.Map<Quote>(quote);
+        try
+        {
+            if (HttpContext.User.Identity != null)
+            {
+                quoteEntity.QuoteCreatedBy = HttpContext.User.Identity.Name;
+            }
+        }catch(Exception e)
+        {
+            
+        }
         _quoteRepository.AddQuote(quoteEntity);
         _quoteRepository.Save();
 
@@ -76,7 +88,7 @@ public class QuoteController : ControllerBase
     }
     
     /// <summary>
-    /// Get a list of all quotes that match the search and filter parameters sent on the quary string
+    /// Get a list of all quotes that match the search and filter parameters sent on the query string
     /// </summary>
     /// <param name="quoteResourceParams">string parameters to search and filter results by:
     /// QuoteNumber, QuotedBy, Type, SecondaryType, CustomerName, MOName </param>
@@ -88,18 +100,17 @@ public class QuoteController : ControllerBase
     [HttpGet]
     public ActionResult<IEnumerable<OutputQuoteDTO>> GetQuotes([FromQuery] QuoteResourceParams quoteResourceParams)
     {
-        var quotes = _quoteRepository.GetQuotes();
         if(quoteResourceParams != null)
         {
-            quotes = _quoteRepository.GetQuotes(quoteResourceParams);
+            var quotes = _quoteRepository.GetQuotes(quoteResourceParams);
+            if (quotes == null || !quotes.Any())
+            {
+                return NotFound();
+            }
+            return Ok(_mapper.Map<IEnumerable<OutputQuoteDTO>>(quotes));
         }
 
-        if (quotes == null || !quotes.Any())
-        {
-            return NotFound();
-        }
-        
-        return Ok(_mapper.Map<IEnumerable<OutputQuoteDTO>>(quotes));
+        return NotFound();
     }
 
 
@@ -122,13 +133,22 @@ public class QuoteController : ControllerBase
     {
         if (!_quoteRepository.QuoteExists(quoteId))
         {
-            var quotetoAdd = _mapper.Map<Quote>(quoteInput);
-            quotetoAdd.QuoteId = quoteId;
-
-            _quoteRepository.AddQuote(quotetoAdd);
+            var quoteToAdd = _mapper.Map<Quote>(quoteInput);
+            quoteToAdd.QuoteId = quoteId;
+            try
+            {
+                if (HttpContext.User.Identity != null)
+                {
+                    quoteToAdd.QuoteCreatedBy = HttpContext.User.Identity.Name;
+                }
+            }catch(Exception e)
+            {
+            
+            }
+            _quoteRepository.AddQuote(quoteToAdd);
             _quoteRepository.Save();
-            var returnQuote = _mapper.Map<OutputQuoteDTO>(quotetoAdd);
-            return CreatedAtRoute("GetQuote", new {QuoteId = returnQuote.QuoteId}, returnQuote);
+            var returnQuote = _mapper.Map<OutputQuoteDTO>(quoteToAdd);
+            return CreatedAtRoute("GetQuote", new {returnQuote.QuoteId}, returnQuote);
         }
 
         var quote = _quoteRepository.GetQuote(quoteId);
@@ -162,7 +182,16 @@ public class QuoteController : ControllerBase
         }
         var quote = _quoteRepository.GetQuote(quoteId);
         
-        
+        try
+        {
+            if (HttpContext.User.Identity != null)
+            {
+                quote.QuoteCreatedBy = HttpContext.User.Identity.Name;
+            }
+        }catch(Exception e)
+        {
+            
+        }
         _mapper.Map(quoteInput, quote);
 
         _quoteRepository.UpdateQuote(quote);

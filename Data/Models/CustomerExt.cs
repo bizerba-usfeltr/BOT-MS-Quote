@@ -5,5 +5,7 @@
 /// </summary>
 public class CustomerExt : Customer
 {
-
+    public CustomerExt()
+    {
+    }
 }

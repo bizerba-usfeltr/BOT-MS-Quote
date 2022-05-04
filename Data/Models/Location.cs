@@ -5,8 +5,12 @@
 /// </summary>
 public class Location
 {
+    public Location()
+    {
+    }
+
     /// <summary>
-    /// Id of the location record in the db, used as unique idendifier (pk,fk)
+    /// Id of the location record in the db, used as unique identifier (pk,fk)
     /// </summary>
     public Guid LocationId { get; set; }
     
@@ -29,4 +33,5 @@ public class Location
     /// the customer that owns this site
     /// </summary>
     public Customer Customer { get; set; }
+
 }

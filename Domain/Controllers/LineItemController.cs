@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography;
-using AutoMapper;
+﻿using AutoMapper;
 using Data.Models;
 using Domain.DTOs;
 using Infrastructure.Repos;
@@ -8,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Domain.Controllers;
 
+/// <summary>
+/// Controller containing the endpoints pertaining to line items
+/// </summary>
 [ApiController]
 [Route("api/quotes/{quoteId}/lineitems")]
 [Produces(contentType: "application/json", "application/xml")]
@@ -50,7 +52,7 @@ public class LineItemController : ControllerBase
 
         var returnLineItem = _mapper.Map<LineItemOutputDTO>(itemEntity);
         
-        return CreatedAtRoute("GetLineItem", new {LineItemId = returnLineItem.LineItemId}, returnLineItem);
+        return CreatedAtRoute("GetLineItem", new {returnLineItem.LineItemId}, returnLineItem);
     }   
     
     /// <summary>
@@ -75,7 +77,7 @@ public class LineItemController : ControllerBase
         {
             return NotFound();
         }
-        var item = _quoteRepository.GetLineItem(itemId);
+        var item = _quoteRepository.GetLineItem(quoteId, itemId);
         return Ok(_mapper.Map<LineItemOutputDTO>(item));
     }
      
@@ -132,15 +134,16 @@ public class LineItemController : ControllerBase
 
             var returnLineItem = _mapper.Map<LineItemOutputDTO>(itemEntity);
         
-            return CreatedAtRoute("GetLineItems", new {LineItemId = returnLineItem.LineItemId}, returnLineItem);
+            return CreatedAtRoute("GetLineItems", new {returnLineItem.LineItemId}, returnLineItem);
         }
 
-        var item = _quoteRepository.GetQuote(itemId);
-        _mapper.Map(itemInput, item);
+        var item = _quoteRepository.GetLineItem(quoteId, itemId);
 
-        _quoteRepository.UpdateQuote(item);
-        _quoteRepository.Save();
-        return Ok(_mapper.Map<LineItemOutputDTO>(item));
+            _mapper.Map(itemInput, item);
+        
+            _quoteRepository.UpdateLineItem(item);
+            _quoteRepository.Save();
+            return Ok(_mapper.Map<LineItemOutputDTO>(item));
     }
 
     /// <summary>
@@ -174,7 +177,7 @@ public class LineItemController : ControllerBase
             return Conflict();
         }
         
-        var item = _quoteRepository.GetLineItem(quoteId);
+        var item = _quoteRepository.GetLineItem(quoteId, itemId);
         _quoteRepository.DeleteLineItem(item);
         _quoteRepository.Save();
 

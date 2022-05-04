@@ -2,6 +2,10 @@
 
 public class Customer
 {
+    public Customer()
+    {
+    }
+
     /// <summary>
     /// Id of the customer record in the db, used as unique identifier (pk,fk)
     /// </summary>

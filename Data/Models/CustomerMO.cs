@@ -2,5 +2,7 @@
 
 public class CustomerMO : Customer
 {
-
+    public CustomerMO()
+    {
+    }
 }

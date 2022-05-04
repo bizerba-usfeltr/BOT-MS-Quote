@@ -13,8 +13,9 @@ public interface IQuoteRepository
     bool QuoteExists(Guid quoteId);
 
     void AddLineItem(Guid quoteId, LineItem item);
-    LineItem GetLineItem(Guid itemId);
+    LineItem GetLineItem(Guid quoteId, Guid itemId);
     IEnumerable<LineItem> GetLineItems(Guid quoteId);
+    void UpdateLineItem(LineItem item);
     void DeleteLineItem(LineItem item);
     bool LineItemExists(Guid itemId);
     bool Save();

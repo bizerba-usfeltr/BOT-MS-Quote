@@ -2,5 +2,7 @@
 
 public class QuoteUpdateDTO : QuoteInputDTO
 {
-    
+    public QuoteUpdateDTO()
+    {
+    }
 }

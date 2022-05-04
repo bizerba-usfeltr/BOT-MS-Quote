@@ -3,8 +3,12 @@
 /// <summary>
 /// A record of changes to a field
 /// </summary>
-public class ChangesOutputDOT
+public class ChangesOutputDTO
 {
+    public ChangesOutputDTO()
+    {
+    }
+
     /// <summary>
     /// The name of the field that was changed
     /// </summary>

@@ -3,6 +3,10 @@ namespace Domain.DTOs;
 
 public class AuditOutputDTO
 {
+    public AuditOutputDTO()
+    {
+    }
+
     /// <summary>
     /// The name of the person that made the changes
     /// </summary>
@@ -16,5 +20,5 @@ public class AuditOutputDTO
     /// <summary>
     /// What changes were made: field, old value and new value
     /// </summary>
-    private List<ChangesOutputDOT> Changes{ get; set; }
+    private List<ChangesOutputDTO> Changes{ get; set; }
 }

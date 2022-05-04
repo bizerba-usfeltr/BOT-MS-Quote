@@ -1,10 +1,17 @@
 ﻿using Data.Models;
 namespace Domain.DTOs;
 
+/// <summary>
+/// Quote fields to be displayed in the ui 
+/// </summary>
 public class OutputQuoteDTO
 {
+    public OutputQuoteDTO()
+    {
+    }
+
     /// <summary>
-    /// Id of the quote record in the db, used as unique identifier (pk,fk)
+    /// Id of the quote record in the db, used as unique identifier (pk,fk), not for display
     /// </summary>
     public Guid QuoteId { get; set; }   
     
@@ -17,7 +24,14 @@ public class OutputQuoteDTO
     /// <summary>
     /// Person who created the quote.
     /// </summary>
-    public String QuotedByName{ get; set; }
+    public String QuoteCreatedBy{ get; set; }    
+    
+    /// <summary>
+    /// Person in sales involved in the quote.
+    /// </summary>
+#nullable enable
+    public String? SalePersonName{ get; set; } 
+#nullable disable  
     
     /// <summary>
     /// Person who requested the quote and is the point of contact regarding the quote.
@@ -35,6 +49,11 @@ public class OutputQuoteDTO
     public DateOnly QuoteDate{ get; set; }
     
     /// <summary>
+    /// Date the quote is valid till, typically 90 days from creation or last update 
+    /// </summary>
+    public DateOnly QuoteExpiration{ get; set; }
+    
+    /// <summary>
     /// The type of job it is: Checkweigher, Industrial System, Labeling, Logistics, Marketing
     /// Metal Detector, Retail, Software, Vision, X-Ray
     /// </summary>
@@ -43,22 +62,41 @@ public class OutputQuoteDTO
     /// <summary>
     /// Optional secondary type of job it is
     /// </summary>
+#nullable enable
     public QuoteType? QuoteSecondaryType{ get; set; }
+#nullable disable 
+ 
+    /// <summary>
+    /// Description of the products and and work to be done covered by the quote
+    /// </summary>
+    public String Description { get; set; }
+    
+    /// <summary>
+    /// Any disclaimers or conditions that stipulate the scope of the product and/or work covered in this quote 
+    /// </summary>
+    public String Conditions { get; set; }
+    
+    /// <summary>
+    /// An estimation of how long fulfilling this quote will take
+    /// </summary>
+    public String LeadTime { get; set; }
     
     /// <summary>
     /// Grand Total price of the Quote
     /// </summary>
     public decimal QuoteTotal{ get; set; }
+
+    /// <summary>
+    /// The external end customer ie Cargill
+    /// </summary>
+#nullable enable
+    public String? ExtCustomerName{ get; set; }  
     
     /// <summary>
-    /// The external end customer ie Cargill Springdale
+    /// Material organizations country and location
     /// </summary>
-    public String ExtCustomerName{ get; set; }
-    
-    /// <summary>
-    /// The external end customers country and location
-    /// </summary>
-    public String ExtCustomerLocation{ get; set; }    
+    public String? ExtCustomerLocation{ get; set; }
+#nullable disable    
     
     /// <summary>
     /// Material organization. the main customer for the quote ie Bizerba Germany
@@ -69,16 +107,11 @@ public class OutputQuoteDTO
     /// Material organizations country and location
     /// </summary>
     public String MOCustomerLocation{ get; set; }
-    
-    /// <summary>
-    /// The date the quote is valid till, typically 90 days from the creation date
-    /// If a quote is passed this data it can be re-certified as valid for another period by the quoter or pm
-    /// </summary>
-    public DateOnly QuoteExpiration{ get; set; }
-    
+
     /// <summary>
     /// A summary of work and materials the quote covers.
     /// typically only one line item per quote but there can be more
     /// </summary>
     public List<LineItem> LineItems{ get; set; }
+
 }

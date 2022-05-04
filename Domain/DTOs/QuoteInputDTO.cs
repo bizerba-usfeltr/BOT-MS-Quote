@@ -1,6 +1,9 @@
 ﻿using Data.Models;
 namespace Domain.DTOs;
 
+/// <summary>
+/// Fields of the quote that may be manually input by user
+/// </summary>
 public abstract class QuoteInputDTO
 {
     /// <summary>
@@ -12,7 +15,7 @@ public abstract class QuoteInputDTO
     /// <summary>
     ///  Person who created the quote.
     /// </summary>
-    public String QuotedByName{ get; set; }
+    public String SalePersonName{ get; set; }
     
     /// <summary>
     /// Person qho created the quote and is the point of contact regarding the quote.
@@ -26,11 +29,6 @@ public abstract class QuoteInputDTO
     public String ContactEmail{ get; set; }
 
     /// <summary>
-    /// Date the quote was created
-    /// </summary>
-    public DateOnly QuoteDate{ get; set; }
-    
-    /// <summary>
     /// The type of job it is: Checkweigher, Industrial System, Labeling, Logistics, Marketing
     /// Metal Detector, Retail, Software, Vision, X-Ray
     /// </summary>
@@ -40,6 +38,21 @@ public abstract class QuoteInputDTO
     /// Optional secondary type of job it is
     /// </summary>
     public QuoteType? QuoteSecondaryType{ get; set; }
+    
+    /// <summary>
+    /// Description of the products and and work to be done covered by the quote
+    /// </summary>
+    public String Description { get; set; }
+    
+    /// <summary>
+    /// Any disclaimers or conditions that stipulate the scope of the product and/or work covered in this quote 
+    /// </summary>
+    public String Conditions { get; set; }
+    
+    /// <summary>
+    /// An estimation of how long fulfilling this quote will take
+    /// </summary>
+    public String LeadTime { get; set; }
     
     /// <summary>
     /// Grand Total price of the Quote
@@ -77,4 +90,9 @@ public abstract class QuoteInputDTO
     /// typically only one line item per quote but there can be more
     /// </summary>
     public List<LineItem> LineItems{ get; set; }
+
+    public QuoteInputDTO()
+    {
+        
+    }
 }

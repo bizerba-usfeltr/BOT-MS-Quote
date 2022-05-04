@@ -5,8 +5,12 @@
 /// </summary>
 public class ChangeRecord
 {
+    public ChangeRecord()
+    {
+    }
+
     /// <summary>
-    /// Id of the change record in the db, used as unique idendifier (pk,fk)
+    /// Id of the change record in the db, used as unique identifier (pk,fk)
     /// </summary>
     public Guid ChangeId { get; set; }
     

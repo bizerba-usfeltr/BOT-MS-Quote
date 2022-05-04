@@ -2,5 +2,5 @@
 
 public class QuoteCreationDTO : QuoteInputDTO
 {
-    
+    public QuoteCreationDTO(){}
 }

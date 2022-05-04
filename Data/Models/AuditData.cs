@@ -5,8 +5,12 @@
 /// </summary>
 public class AuditData
 {
+    public AuditData()
+    {
+    }
+
     /// <summary>
-    /// Id of the audit record in the db, used as unique idendifier (pk,fk)
+    /// Id of the audit record in the db, used as unique identifier (pk,fk)
     /// </summary>
     public Guid AuditId { get; set; }
     
