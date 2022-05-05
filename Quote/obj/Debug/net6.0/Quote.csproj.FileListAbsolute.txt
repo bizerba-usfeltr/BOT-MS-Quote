@@ -6,11 +6,13 @@ C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Quote.runtimeco
 C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Quote.dll
 C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\ref\Quote.dll
 C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Quote.pdb
+C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Quote.xml
 C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\AutoMapper.dll
 C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Bes.Standard.Logging.dll
 C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Bes.Standards.Logging.Serilog.dll
 C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Bes.Standards.Web.dll
+C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Humanizer.dll
 C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
 C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Microsoft.AspNetCore.Razor.Language.dll
@@ -19,7 +21,9 @@ C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Microsoft.CodeA
 C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Microsoft.CodeAnalysis.Razor.dll
 C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
 C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
 C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Microsoft.OpenApi.dll
 C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Newtonsoft.Json.dll
@@ -38,6 +42,7 @@ C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Domain.dll
 C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Infrastructure.dll
 C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Data.pdb
 C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Domain.pdb
+C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Domain.xml
 C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Infrastructure.pdb
 C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\obj\Debug\net6.0\Quote.csproj.AssemblyReference.cache
 C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\obj\Debug\net6.0\Quote.GeneratedMSBuildEditorConfig.editorconfig
@@ -54,5 +59,3 @@ C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\obj\Debug\net6.0\Quote.dll
 C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\obj\Debug\net6.0\ref\Quote.dll
 C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\obj\Debug\net6.0\Quote.pdb
 C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\obj\Debug\net6.0\Quote.genruntimeconfig.cache
-C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Quote.xml
-C:\Users\us_feltr_ext\RiderProjects\Quote\Quote\bin\Debug\net6.0\Domain.xml

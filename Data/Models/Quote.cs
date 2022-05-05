@@ -15,6 +15,7 @@ public class Quote
     [Required]
     public Guid QuoteId { get; set; }
 
+    //TODO potential min for starting a quote : number, 
     // The number used for identifying the quote by users. will be the same in the budget and the project
     [Required]
     public String QuoteNumber { get; set; }
@@ -72,14 +73,14 @@ public class Quote
     public Guid? QuoteCustomerExtId{ get; set; }    
     
     // The external end customer ie Cargill
-    public CustomerExt? QuoteCustomerExt{ get; set; }    
+    public Customer? QuoteCustomerExt{ get; set; }    
 #nullable disable   
     
     // The id of the mo
     public Guid QuoteCustomerMOId{ get; set; }
 
     // Material organization. the main customer for the quote ie Bizerba Germany
-    public CustomerMO QuoteCustomerMo{ get; set; }
+    public Customer QuoteCustomerMo{ get; set; }
 
             
     // Id of the quote breakdown record

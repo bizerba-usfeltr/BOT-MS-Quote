@@ -1,4 +1,8 @@
 ﻿using AutoMapper;
+using Bes.Standard.Logging;
+using Bes.Standards.Web;
+using Bes.Standards.Web.Logging;
+using Bes.Standards.Web.Logging.Attributes;
 using Data.Models;
 using Domain.DTOs;
 using Infrastructure.Repos;
@@ -40,14 +44,20 @@ public class QuoteController : ControllerBase
     /// <returns>An output quote DTO </returns>
     /// <response code="201">Returns the created quote</response>
     /// <response code="409">The new quote would conflict with existing an existing</response>
-    /// <response code="422">The supplied labor data has validator errors</response>
-    [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(OutputQuoteDTO))]
+    /// <response code="422">The supplied provided quote data has validator errors</response>
+    [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(QuoteOutputDTO))]
     [ProducesResponseType(StatusCodes.Status409Conflict)]
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     [Consumes(contentType: "application/json")]
     [HttpPost]
-    public ActionResult<OutputQuoteDTO> CreateQuote(QuoteInputDTO quote)
+    public ActionResult<QuoteOutputDTO> CreateQuote(QuoteCreationDTO quote)
     {
+        // CreateDomainLogEntry(message: "Processing request to add a new labor rate.",
+        //     BizerbaLogLevel.Debug,
+        //     new Dictionary<String, Object> {
+        //         [key: "Input"] = quote
+        //     });
+        
         var quoteEntity = _mapper.Map<Quote>(quote);
         try
         {
@@ -55,6 +65,7 @@ public class QuoteController : ControllerBase
             {
                 quoteEntity.QuoteCreatedBy = HttpContext.User.Identity.Name;
             }
+            quoteEntity.QuoteDate = DateOnly.FromDateTime(DateTime.Now);
         }catch(Exception e)
         {
             
@@ -62,7 +73,7 @@ public class QuoteController : ControllerBase
         _quoteRepository.AddQuote(quoteEntity);
         _quoteRepository.Save();
 
-        var returnQuote = _mapper.Map<OutputQuoteDTO>(quoteEntity);
+        var returnQuote = _mapper.Map<QuoteOutputDTO>(quoteEntity);
         return CreatedAtRoute("GetQuote", new {QuoteId = returnQuote.QuoteId}, returnQuote);
     }
     
@@ -73,10 +84,10 @@ public class QuoteController : ControllerBase
     /// <returns>An action result with the output quote DTO in the response body</returns>
     /// <response code="200">Returns the quote associated with the given quote id</response>
     /// <response code="404">A quote with that Id could not be found</response>
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(OutputQuoteDTO))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(QuoteOutputDTO))]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [HttpGet("{quoteId}", Name = "GetQuote")]
-    public ActionResult<OutputQuoteDTO> GetQuote(Guid quoteId)
+    public ActionResult<QuoteOutputDTO> GetQuote(Guid quoteId)
     {
         var quote = _quoteRepository.GetQuote(quoteId);
         
@@ -84,7 +95,7 @@ public class QuoteController : ControllerBase
         {
             return NotFound();
         }
-        return Ok(_mapper.Map<OutputQuoteDTO>(quote));
+        return Ok(_mapper.Map<QuoteOutputDTO>(quote));
     }
     
     /// <summary>
@@ -95,10 +106,10 @@ public class QuoteController : ControllerBase
     /// <returns>An action result with an IEnumerable of quotes that match the search and filter parameters in the response body</returns>
     /// <response code="200">Returns the quote associated with the given quote id</response>
     /// <response code="404">A quote with that met the query parameters could not be found</response>
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<OutputQuoteDTO>))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<QuoteOutputDTO>))]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [HttpGet]
-    public ActionResult<IEnumerable<OutputQuoteDTO>> GetQuotes([FromQuery] QuoteResourceParams quoteResourceParams)
+    public ActionResult<IEnumerable<QuoteOutputDTO>> GetQuotes([FromQuery] QuoteResourceParams quoteResourceParams)
     {
         if(quoteResourceParams != null)
         {
@@ -107,7 +118,7 @@ public class QuoteController : ControllerBase
             {
                 return NotFound();
             }
-            return Ok(_mapper.Map<IEnumerable<OutputQuoteDTO>>(quotes));
+            return Ok(_mapper.Map<IEnumerable<QuoteOutputDTO>>(quotes));
         }
 
         return NotFound();
@@ -147,7 +158,7 @@ public class QuoteController : ControllerBase
             }
             _quoteRepository.AddQuote(quoteToAdd);
             _quoteRepository.Save();
-            var returnQuote = _mapper.Map<OutputQuoteDTO>(quoteToAdd);
+            var returnQuote = _mapper.Map<QuoteOutputDTO>(quoteToAdd);
             return CreatedAtRoute("GetQuote", new {returnQuote.QuoteId}, returnQuote);
         }
 
@@ -156,7 +167,7 @@ public class QuoteController : ControllerBase
 
         _quoteRepository.UpdateQuote(quote);
         _quoteRepository.Save();
-        return Ok(_mapper.Map<OutputQuoteDTO>(quote));
+        return Ok(_mapper.Map<QuoteOutputDTO>(quote));
         
     }
 
@@ -174,7 +185,7 @@ public class QuoteController : ControllerBase
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     [Consumes(contentType: "application/json")]
     [HttpPatch("{quoteId}")]
-    public ActionResult<OutputQuoteDTO> UpdateQuote(JsonPatchDocument<QuoteInputDTO> quoteInput, Guid quoteId)
+    public ActionResult<QuoteOutputDTO> UpdateQuote(JsonPatchDocument<QuoteInputDTO> quoteInput, Guid quoteId)
     {
         if (!_quoteRepository.QuoteExists(quoteId))
         {

@@ -1,4 +1,5 @@
 C:\Users\us_feltr_ext\RiderProjects\Quote\Infrastructure\bin\Debug\net6.0\Infrastructure.deps.json
+C:\Users\us_feltr_ext\RiderProjects\Quote\Infrastructure\bin\Debug\net6.0\Infrastructure.runtimeconfig.json
 C:\Users\us_feltr_ext\RiderProjects\Quote\Infrastructure\bin\Debug\net6.0\Infrastructure.dll
 C:\Users\us_feltr_ext\RiderProjects\Quote\Infrastructure\bin\Debug\net6.0\ref\Infrastructure.dll
 C:\Users\us_feltr_ext\RiderProjects\Quote\Infrastructure\bin\Debug\net6.0\Infrastructure.pdb
@@ -13,3 +14,4 @@ C:\Users\us_feltr_ext\RiderProjects\Quote\Infrastructure\obj\Debug\net6.0\Infras
 C:\Users\us_feltr_ext\RiderProjects\Quote\Infrastructure\obj\Debug\net6.0\Infrastructure.dll
 C:\Users\us_feltr_ext\RiderProjects\Quote\Infrastructure\obj\Debug\net6.0\ref\Infrastructure.dll
 C:\Users\us_feltr_ext\RiderProjects\Quote\Infrastructure\obj\Debug\net6.0\Infrastructure.pdb
+C:\Users\us_feltr_ext\RiderProjects\Quote\Infrastructure\obj\Debug\net6.0\Infrastructure.genruntimeconfig.cache

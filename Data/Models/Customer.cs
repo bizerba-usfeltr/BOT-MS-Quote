@@ -1,4 +1,6 @@
-﻿namespace Data.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Data.Models;
 
 public class Customer
 {
@@ -32,7 +34,14 @@ public class Customer
     public Guid CustomerLocationId{ get; set; }
     
     /// <summary>
-    /// the list of quotes a customer has
+    /// the list of quotes for which this customer is an external customer
     /// </summary>
-    public ICollection<Quote> Quotes { get; set; }
+    [InverseProperty("QuoteCustomerExt")]
+    public ICollection<Quote> ExtQuotes { get; set; }    
+    
+    /// <summary>
+    /// the list of quotes for which this customer is an material organization customer
+    /// </summary>
+    [InverseProperty("QuoteCustomerMO")]
+    public ICollection<Quote> MOQuotes { get; set; }
 }

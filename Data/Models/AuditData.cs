@@ -15,6 +15,11 @@ public class AuditData
     public Guid AuditId { get; set; }
     
     /// <summary>
+    /// The id of the person that made the changes
+    /// </summary>
+    public String EditorID{ get; set; }    
+    
+    /// <summary>
     /// The name of the person that made the changes
     /// </summary>
     public String EditorName{ get; set; }
@@ -23,10 +28,7 @@ public class AuditData
     /// When the changes were made on
     /// </summary>
     public DateTime EditDate{ get; set; }
-    
-    /// <summary>
-    /// The Quote the changes where made to
-    /// </summary>
+
     public Quote Quote{ get; set; }   
     
     /// <summary>

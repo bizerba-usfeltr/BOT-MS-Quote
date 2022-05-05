@@ -151,7 +151,6 @@ public class LineItemController : ControllerBase
     /// </summary>
     /// <param name="itemId">the id of the line item to delete</param>
     /// <param name="quoteId">the id of the quote the line item is being deleted from</param>
-    /// <param name="quote">the quote the line item belongs to</param>
     /// <returns></returns>
     /// <response code="200">The delete succeeded</response>
     /// <response code="404">A quote or line item with those Ids could not be found</response>
@@ -160,7 +159,7 @@ public class LineItemController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status409Conflict)]
     [HttpDelete("{itemId}" )]
-    public ActionResult<LineItemOutputDTO> DeleteLineItem(Guid itemId, Guid quoteId, Quote quote)
+    public IActionResult DeleteLineItem(Guid itemId, Guid quoteId)
     {
         if (!_quoteRepository.QuoteExists(quoteId))
         {
@@ -172,6 +171,7 @@ public class LineItemController : ControllerBase
             return NotFound();
         }
 
+        var quote = _quoteRepository.GetQuote(quoteId);
         if (quote.LineItems.Count !> 1)
         {
             return Conflict();

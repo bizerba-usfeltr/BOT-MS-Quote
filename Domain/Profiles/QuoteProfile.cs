@@ -7,7 +7,7 @@ public class QuoteProfile : Profile
 {
     public QuoteProfile()
     {
-        CreateMap<Data.Models.Quote, DTOs.OutputQuoteDTO>();
+        CreateMap<Data.Models.Quote, DTOs.QuoteOutputDTO>();
         CreateMap<DTOs.QuoteInputDTO, Data.Models.Quote>();
         CreateMap<DTOs.QuoteCreationDTO, Data.Models.Quote>();
         CreateMap<DTOs.QuoteUpdateDTO, Data.Models.Quote>();

@@ -4,9 +4,9 @@ namespace Domain.DTOs;
 /// <summary>
 /// Quote fields to be displayed in the ui 
 /// </summary>
-public class OutputQuoteDTO
+public class QuoteOutputDTO
 {
-    public OutputQuoteDTO()
+    public QuoteOutputDTO()
     {
     }
 
@@ -112,6 +112,6 @@ public class OutputQuoteDTO
     /// A summary of work and materials the quote covers.
     /// typically only one line item per quote but there can be more
     /// </summary>
-    public List<LineItem> LineItems{ get; set; }
+    public List<LineItemOutputDTO> LineItems{ get; set; }
 
 }

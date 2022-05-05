@@ -1,14 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "LRr+OMWMvRuLxhjnwGWxeleLD2Bmx6GP1BJzQwCIfJowWGXlzZbM5EnPgbLroi+AppPkWO5Ujiv9NRXbgZXlqg==",
+  "dgSpecHash": "02qQ1XVFvv71XkqOsRFDbyOhw7RVcxzvWJ9zY5yYg2g81feb5m5vi/wCjtAl7dxy5V0nuwtSZHhnLWFQnn5CgA==",
   "success": true,
   "projectFilePath": "C:\\Users\\us_feltr_ext\\RiderProjects\\Quote\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\us_feltr_ext\\.nuget\\packages\\bes.standard.logging\\1.1.0\\bes.standard.logging.1.1.0.nupkg.sha512",
+    "C:\\Users\\us_feltr_ext\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\us_feltr_ext\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.1\\microsoft.entityframeworkcore.6.0.1.nupkg.sha512",
     "C:\\Users\\us_feltr_ext\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.1\\microsoft.entityframeworkcore.abstractions.6.0.1.nupkg.sha512",
     "C:\\Users\\us_feltr_ext\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\6.0.1\\microsoft.entityframeworkcore.analyzers.6.0.1.nupkg.sha512",
+    "C:\\Users\\us_feltr_ext\\.nuget\\packages\\microsoft.entityframeworkcore.design\\6.0.1\\microsoft.entityframeworkcore.design.6.0.1.nupkg.sha512",
     "C:\\Users\\us_feltr_ext\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\6.0.1\\microsoft.entityframeworkcore.relational.6.0.1.nupkg.sha512",
+    "C:\\Users\\us_feltr_ext\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\6.0.1\\microsoft.entityframeworkcore.tools.6.0.1.nupkg.sha512",
     "C:\\Users\\us_feltr_ext\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\6.0.0\\microsoft.extensions.caching.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\us_feltr_ext\\.nuget\\packages\\microsoft.extensions.caching.memory\\6.0.0\\microsoft.extensions.caching.memory.6.0.0.nupkg.sha512",
     "C:\\Users\\us_feltr_ext\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",

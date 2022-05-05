@@ -1,8 +1,11 @@
-﻿namespace Data.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Data.Models;
 
 /// <summary>
 /// The location of a customer
 /// </summary>
+[NotMapped]
 public class Location
 {
     public Location()

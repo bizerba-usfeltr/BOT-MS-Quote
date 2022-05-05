@@ -60,13 +60,12 @@
             <response code="404">A quote with that Id could not be found</response>
             <response code="422">The supplied line item data has validator errors</response>
         </member>
-        <member name="M:Domain.Controllers.LineItemController.DeleteLineItem(System.Guid,System.Guid,Data.Models.Quote)">
+        <member name="M:Domain.Controllers.LineItemController.DeleteLineItem(System.Guid,System.Guid)">
             <summary>
             Delete a line item from a quote. This is only allowed if the quote has more than one line item
             </summary>
             <param name="itemId">the id of the line item to delete</param>
             <param name="quoteId">the id of the quote the line item is being deleted from</param>
-            <param name="quote">the quote the line item belongs to</param>
             <returns></returns>
             <response code="200">The delete succeeded</response>
             <response code="404">A quote or line item with those Ids could not be found</response>
@@ -85,7 +84,7 @@
             <param name="mapper">The object that maps input/output data to model data</param>
             <exception cref="T:System.ArgumentNullException"></exception>
         </member>
-        <member name="M:Domain.Controllers.QuoteController.CreateQuote(Domain.DTOs.QuoteInputDTO)">
+        <member name="M:Domain.Controllers.QuoteController.CreateQuote(Domain.DTOs.QuoteCreationDTO)">
             <summary>
             Creates a new quote
             </summary>
@@ -93,7 +92,7 @@
             <returns>An output quote DTO </returns>
             <response code="201">Returns the created quote</response>
             <response code="409">The new quote would conflict with existing an existing</response>
-            <response code="422">The supplied labor data has validator errors</response>
+            <response code="422">The supplied provided quote data has validator errors</response>
         </member>
         <member name="M:Domain.Controllers.QuoteController.GetQuote(System.Guid)">
             <summary>
@@ -180,16 +179,6 @@
         <member name="P:Domain.DTOs.InputCustomerDTO.CustomerName">
             <summary>
             Name of the customer organization
-            </summary>
-        </member>
-        <member name="P:Domain.DTOs.InputCustomerDTO.CustomerCountry">
-            <summary>
-            Country the customer site is in
-            </summary>
-        </member>
-        <member name="P:Domain.DTOs.InputCustomerDTO.CustomerLocation">
-            <summary>
-            Location of the customer site
             </summary>
         </member>
         <member name="T:Domain.DTOs.LineItemInputDTO">
@@ -334,104 +323,111 @@
             typically only one line item per quote but there can be more
             </summary>
         </member>
-        <member name="T:Domain.DTOs.OutputQuoteDTO">
+        <member name="M:Domain.DTOs.QuoteInputDTO.Validate(System.ComponentModel.DataAnnotations.ValidationContext)">
+            <summary>
+            Determines if the object is valid
+            </summary>
+            <param name="validationContext"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Domain.DTOs.QuoteOutputDTO">
             <summary>
             Quote fields to be displayed in the ui 
             </summary>
         </member>
-        <member name="P:Domain.DTOs.OutputQuoteDTO.QuoteId">
+        <member name="P:Domain.DTOs.QuoteOutputDTO.QuoteId">
             <summary>
             Id of the quote record in the db, used as unique identifier (pk,fk), not for display
             </summary>
         </member>
-        <member name="P:Domain.DTOs.OutputQuoteDTO.QuoteNumber">
+        <member name="P:Domain.DTOs.QuoteOutputDTO.QuoteNumber">
             <summary>
             The number used for identifying the quote by users.
             This number will be the same in the budget and the project
             </summary>
         </member>
-        <member name="P:Domain.DTOs.OutputQuoteDTO.QuoteCreatedBy">
+        <member name="P:Domain.DTOs.QuoteOutputDTO.QuoteCreatedBy">
             <summary>
             Person who created the quote.
             </summary>
         </member>
-        <member name="P:Domain.DTOs.OutputQuoteDTO.SalePersonName">
+        <member name="P:Domain.DTOs.QuoteOutputDTO.SalePersonName">
             <summary>
             Person in sales involved in the quote.
             </summary>
         </member>
-        <member name="P:Domain.DTOs.OutputQuoteDTO.ContactName">
+        <member name="P:Domain.DTOs.QuoteOutputDTO.ContactName">
             <summary>
             Person who requested the quote and is the point of contact regarding the quote.
             </summary>
         </member>
-        <member name="P:Domain.DTOs.OutputQuoteDTO.ContactEmail">
+        <member name="P:Domain.DTOs.QuoteOutputDTO.ContactEmail">
             <summary>
             The contact persons email address 
             </summary>
         </member>
-        <member name="P:Domain.DTOs.OutputQuoteDTO.QuoteDate">
+        <member name="P:Domain.DTOs.QuoteOutputDTO.QuoteDate">
             <summary>
             Date the quote was created
             </summary>
         </member>
-        <member name="P:Domain.DTOs.OutputQuoteDTO.QuoteExpiration">
+        <member name="P:Domain.DTOs.QuoteOutputDTO.QuoteExpiration">
             <summary>
             Date the quote is valid till, typically 90 days from creation or last update 
             </summary>
         </member>
-        <member name="P:Domain.DTOs.OutputQuoteDTO.QuotePrimaryType">
+        <member name="P:Domain.DTOs.QuoteOutputDTO.QuotePrimaryType">
             <summary>
             The type of job it is: Checkweigher, Industrial System, Labeling, Logistics, Marketing
             Metal Detector, Retail, Software, Vision, X-Ray
             </summary>
         </member>
-        <member name="P:Domain.DTOs.OutputQuoteDTO.QuoteSecondaryType">
+        <member name="P:Domain.DTOs.QuoteOutputDTO.QuoteSecondaryType">
             <summary>
             Optional secondary type of job it is
             </summary>
         </member>
-        <member name="P:Domain.DTOs.OutputQuoteDTO.Description">
+        <member name="P:Domain.DTOs.QuoteOutputDTO.Description">
             <summary>
             Description of the products and and work to be done covered by the quote
             </summary>
         </member>
-        <member name="P:Domain.DTOs.OutputQuoteDTO.Conditions">
+        <member name="P:Domain.DTOs.QuoteOutputDTO.Conditions">
             <summary>
             Any disclaimers or conditions that stipulate the scope of the product and/or work covered in this quote 
             </summary>
         </member>
-        <member name="P:Domain.DTOs.OutputQuoteDTO.LeadTime">
+        <member name="P:Domain.DTOs.QuoteOutputDTO.LeadTime">
             <summary>
             An estimation of how long fulfilling this quote will take
             </summary>
         </member>
-        <member name="P:Domain.DTOs.OutputQuoteDTO.QuoteTotal">
+        <member name="P:Domain.DTOs.QuoteOutputDTO.QuoteTotal">
             <summary>
             Grand Total price of the Quote
             </summary>
         </member>
-        <member name="P:Domain.DTOs.OutputQuoteDTO.ExtCustomerName">
+        <member name="P:Domain.DTOs.QuoteOutputDTO.ExtCustomerName">
             <summary>
             The external end customer ie Cargill
             </summary>
         </member>
-        <member name="P:Domain.DTOs.OutputQuoteDTO.ExtCustomerLocation">
+        <member name="P:Domain.DTOs.QuoteOutputDTO.ExtCustomerLocation">
             <summary>
             Material organizations country and location
             </summary>
         </member>
-        <member name="P:Domain.DTOs.OutputQuoteDTO.MOCustomerName">
+        <member name="P:Domain.DTOs.QuoteOutputDTO.MOCustomerName">
             <summary>
             Material organization. the main customer for the quote ie Bizerba Germany
             </summary>
         </member>
-        <member name="P:Domain.DTOs.OutputQuoteDTO.MOCustomerLocation">
+        <member name="P:Domain.DTOs.QuoteOutputDTO.MOCustomerLocation">
             <summary>
             Material organizations country and location
             </summary>
         </member>
-        <member name="P:Domain.DTOs.OutputQuoteDTO.LineItems">
+        <member name="P:Domain.DTOs.QuoteOutputDTO.LineItems">
             <summary>
             A summary of work and materials the quote covers.
             typically only one line item per quote but there can be more

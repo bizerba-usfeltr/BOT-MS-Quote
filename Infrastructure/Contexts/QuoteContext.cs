@@ -11,11 +11,17 @@ public class QuoteContext: DbContext
     {
     }
 
+    protected QuoteContext()
+    {
+    }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.HasPostgresEnum<Class>();
+        modelBuilder.HasPostgresEnum<QuoteType>();
+        
         CreateQuote(modelBuilder);
-        CreateCustomerExt(modelBuilder);
-        CreateCustomerMO(modelBuilder);
+        CreateCustomer(modelBuilder);
         CreateLineItem(modelBuilder);
         CreateBreakdownItem(modelBuilder);
         CreateAuditData(modelBuilder);
@@ -51,7 +57,7 @@ public class QuoteContext: DbContext
             
             entity.Property(q => q.QuoteDate)
                 .HasColumnName("date")
-                .HasDefaultValueSql("now()")
+                .HasDefaultValueSql("CURRENT_DATE")
                 .IsRequired();
             //TODO: add raw sql to migrations to update date column with now on update
             
@@ -67,17 +73,19 @@ public class QuoteContext: DbContext
                 .IsRequired();
             
             entity.Property(q => q.QuotePrimaryType)
+                .HasColumnType("quote_type")
                 .HasColumnName("type")
                 .IsRequired();
             
             entity.Property(q => q.QuoteSecondaryType)
+                .HasColumnType("quote_type")
                 .HasColumnName("second_type");
             
             entity.Property(q => q.QuoteCustomerExtId)
                 .HasColumnName("fk_customer");
             
             entity.HasOne(q => q.QuoteCustomerExt)
-                .WithMany(c => c.Quotes)
+                .WithMany(c => c.ExtQuotes)
                 .HasForeignKey(q => q.QuoteCustomerExtId)
                 .IsRequired();
             
@@ -85,12 +93,13 @@ public class QuoteContext: DbContext
                 .HasColumnName("fk_mo");
             
             entity.HasOne(q => q.QuoteCustomerMo)
-                .WithMany(c => c.Quotes)
+                .WithMany(c => c.MOQuotes)
                 .HasForeignKey(q => q.QuoteCustomerMOId)
                 .IsRequired();
 
             entity.Property(q => q.QuoteExpiration)
                 .HasColumnName("expires")
+                .HasDefaultValueSql("CURRENT_DATE + INTERVAL '90 days'")
                 .IsRequired();
                                     
             entity.Property(q => q.BreakdownId)
@@ -128,7 +137,7 @@ public class QuoteContext: DbContext
                 .IsRequired();
 
             entity.Property(i => i.ClassDesignation)
-                .HasColumnType("enum")
+                .HasColumnType("class")
                 .IsRequired();
 
             entity.Property(i => i.QuoteId)
@@ -138,9 +147,9 @@ public class QuoteContext: DbContext
                 .HasForeignKey(i => i.QuoteId);
         });
     }   
-    private void CreateCustomerExt(ModelBuilder modelBuilder)
+    private void CreateCustomer(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<CustomerExt>(entity =>
+        modelBuilder.Entity<Customer>(entity =>
         {
             entity.Property(c => c.CustomerId)
                 .HasColumnName("id")
@@ -153,9 +162,9 @@ public class QuoteContext: DbContext
                 .IsRequired();
             
             entity.Property(c => c.CustomerLocation)
-                // .HasConversion(
-                //     l => JsonConvert.SerializeObject(l, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }),
-                //     l => JsonConvert.DeserializeObject<Location>(l, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }))
+                .HasConversion(
+                    l => JsonConvert.SerializeObject(l, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }),
+                    l => JsonConvert.DeserializeObject<Location>(l, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }))
                 .HasColumnName("location")
                 .IsRequired();
             
@@ -164,32 +173,7 @@ public class QuoteContext: DbContext
                 .IsRequired();
         });
     }    
-    private void CreateCustomerMO(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<CustomerMO>(entity =>
-        {
-            entity.Property(c => c.CustomerId)
-                .HasColumnName("id")
-                .ValueGeneratedOnAdd()
-                .IsRequired(); 
-            entity.HasKey(c => c.CustomerId);
-            
-            entity.Property(c => c.CustomerName)
-                .HasColumnName("name")
-                .IsRequired();
-            
-            entity.Property(c => c.CustomerLocation)
-                // .HasConversion(
-                //     l => JsonConvert.SerializeObject(l, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }),
-                //     l => JsonConvert.DeserializeObject<Location>(l, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }))
-                .HasColumnName("location")
-                .IsRequired();
-            
-            entity.Property(c => c.CustomerCountry)
-                .HasColumnName("country")
-                .IsRequired();
-        }); 
-    }    
+   
     private void CreateBreakdownItem(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<BreakdownItem>(entity =>
@@ -259,8 +243,7 @@ public class QuoteContext: DbContext
         });
     }
     public DbSet<Quote> Quotes { get; set; }
-    public DbSet<CustomerExt> CustomerExts { get; set; }
-    public DbSet<CustomerMO> CustomerMOs { get; set; }
+    public DbSet<Customer> Customers { get; set; }
     public DbSet<AuditData> Audits { get; set; }
     public DbSet<LineItem> LineItems { get; set; }
     public DbSet<LineItem> BreakdownItems { get; set; }
