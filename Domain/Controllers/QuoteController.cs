@@ -5,6 +5,7 @@ using Bes.Standards.Web.Logging;
 using Bes.Standards.Web.Logging.Attributes;
 using Data.Models;
 using Domain.DTOs;
+using Domain.Utilities;
 using Infrastructure.Repos;
 using Infrastructure.ResourceParameters;
 using Microsoft.AspNetCore.Http;
@@ -52,7 +53,7 @@ public class QuoteController : ControllerBase
     [HttpPost]
     public ActionResult<QuoteOutputDTO> CreateQuote(QuoteCreationDTO quote)
     {
-        // CreateDomainLogEntry(message: "Processing request to add a new labor rate.",
+        // CreateDomainLogEntry(message: "Processing request to add a new quote.",
         //     BizerbaLogLevel.Debug,
         //     new Dictionary<String, Object> {
         //         [key: "Input"] = quote
@@ -70,6 +71,8 @@ public class QuoteController : ControllerBase
         {
             
         }
+
+        QuoteExtentions.InitialRecord(quoteEntity, this.HttpContext);
         _quoteRepository.AddQuote(quoteEntity);
         _quoteRepository.Save();
 
@@ -156,19 +159,21 @@ public class QuoteController : ControllerBase
             {
             
             }
+            
+            QuoteExtentions.InitialRecord(quoteToAdd, this.HttpContext);
             _quoteRepository.AddQuote(quoteToAdd);
             _quoteRepository.Save();
             var returnQuote = _mapper.Map<QuoteOutputDTO>(quoteToAdd);
             return CreatedAtRoute("GetQuote", new {returnQuote.QuoteId}, returnQuote);
         }
 
-        var quote = _quoteRepository.GetQuote(quoteId);
-        _mapper.Map(quoteInput, quote);
+        var originalQuote = _quoteRepository.GetQuote(quoteId);
+        var updateQuote = _mapper.Map(quoteInput, originalQuote);
 
-        _quoteRepository.UpdateQuote(quote);
+        QuoteExtentions.AddAuditData(updateQuote, originalQuote, HttpContext);
+        _quoteRepository.UpdateQuote(originalQuote);
         _quoteRepository.Save();
-        return Ok(_mapper.Map<QuoteOutputDTO>(quote));
-        
+        return Ok(_mapper.Map<QuoteOutputDTO>(originalQuote));
     }
 
     /// <summary>
@@ -203,8 +208,9 @@ public class QuoteController : ControllerBase
         {
             
         }
-        _mapper.Map(quoteInput, quote);
-
+        var quoteToUpdate = _mapper.Map(quoteInput, quote);
+        
+        QuoteExtentions.AddAuditData(quoteToUpdate, quote, HttpContext);
         _quoteRepository.UpdateQuote(quote);
         _quoteRepository.Save();
         

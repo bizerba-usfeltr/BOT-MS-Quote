@@ -30,6 +30,7 @@ public class Customer
     
     /// <summary>
     /// Id of the location of the customer site
+    /// currently unused location not stored in seperate table, might remove
     /// </summary>
     public Guid CustomerLocationId{ get; set; }
     
