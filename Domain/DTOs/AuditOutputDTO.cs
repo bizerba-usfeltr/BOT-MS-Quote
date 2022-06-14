@@ -1,6 +1,9 @@
 ﻿using Data.Models;
 namespace Domain.DTOs;
 
+/// <summary>
+/// Records of changes that have happen of the lifetime of a quote
+/// </summary>
 public class AuditOutputDTO
 {
     public AuditOutputDTO()

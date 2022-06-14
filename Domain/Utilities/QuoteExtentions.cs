@@ -173,6 +173,7 @@ public class QuoteExtentions
             EditDate = DateTime.UtcNow,
             EditorID = context?.User?.Claims.FirstOrDefault(x => x.Type == "sub")?.Value ?? String.Empty,
             EditorName = context?.User?.Claims.FirstOrDefault(x => x.Type == "name")?.Value ?? String.Empty,
+            Changes = new List<ChangeRecord>{ }
         };
 
         foreach (PropertyInfo prop in quote.GetType().GetProperties())

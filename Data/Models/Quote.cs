@@ -39,7 +39,7 @@ public class Quote
     
     // The date the quote is valid till, typically 90 days
     // If a quote is pasted this data it can be recertified as valid for another period by the quoter or pm
-    public DateOnly QuoteExpiration{ get; set; }
+    public DateTime QuoteExpiration{ get; set; }
     
     // The type of job it is: Checkweigher, Industrial System, Labeling, Logistics, Marketing
     //Metal Detector, Retail, Software, Vision, X-Ray

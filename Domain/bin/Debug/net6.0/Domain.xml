@@ -103,6 +103,15 @@
             <response code="200">Returns the quote associated with the given quote id</response>
             <response code="404">A quote with that Id could not be found</response>
         </member>
+        <member name="M:Domain.Controllers.QuoteController.GetQuoteByNumber(System.String)">
+            <summary>
+            Get a single quote based on the id of the record in the db
+            </summary>
+            <param name="quoteNumber">The quote number that users have to reference the quote</param>
+            <returns>An action result with the output quote DTO in the response body</returns>
+            <response code="200">Returns the quote associated with the given quote id</response>
+            <response code="404">A quote with that Id could not be found</response>
+        </member>
         <member name="M:Domain.Controllers.QuoteController.GetQuotes(Infrastructure.ResourceParameters.QuoteResourceParams)">
             <summary>
             Get a list of all quotes that match the search and filter parameters sent on the query string
@@ -135,6 +144,11 @@
             <response code="204">The update succeeded</response>
             <response code="404">A quote with that quote id could not be found</response>
             <response code="422">The supplied quote data has validator errors</response>
+        </member>
+        <member name="T:Domain.DTOs.AuditOutputDTO">
+            <summary>
+            Records of changes that have happen of the lifetime of a quote
+            </summary>
         </member>
         <member name="P:Domain.DTOs.AuditOutputDTO.EditorName">
             <summary>
@@ -233,6 +247,11 @@
             </summary>
         </member>
         <!-- Badly formed XML comment ignored for member "P:Domain.DTOs.LineItemOutputDTO.ClassDesignation" -->
+        <member name="T:Domain.DTOs.QuoteCreationDTO">
+            <summary>
+            The data that must be passed in for a quote to be created
+            </summary>
+        </member>
         <member name="T:Domain.DTOs.QuoteInputDTO">
             <summary>
             Fields of the quote that may be manually input by user
@@ -431,6 +450,11 @@
             <summary>
             A summary of work and materials the quote covers.
             typically only one line item per quote but there can be more
+            </summary>
+        </member>
+        <member name="T:Domain.DTOs.QuoteUpdateDTO">
+            <summary>
+            The data that must be passed in for a quote to be updated
             </summary>
         </member>
     </members>

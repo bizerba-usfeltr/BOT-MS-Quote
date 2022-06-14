@@ -73,12 +73,12 @@ public class QuoteContext: DbContext
                 .IsRequired();
             
             entity.Property(q => q.QuotePrimaryType)
-                .HasColumnType("quote_type")
+                .HasConversion<string>()
                 .HasColumnName("type")
                 .IsRequired();
             
             entity.Property(q => q.QuoteSecondaryType)
-                .HasColumnType("quote_type")
+                .HasConversion<string>()
                 .HasColumnName("second_type");
             
             entity.Property(q => q.QuoteCustomerExtId)
@@ -135,9 +135,9 @@ public class QuoteContext: DbContext
             entity.Property(i => i.ItemPrice)
                 .HasColumnType("money")
                 .IsRequired();
-
+//TODO: migration to change enum types to store as string
             entity.Property(i => i.ClassDesignation)
-                .HasColumnType("class")
+                .HasConversion<string>()
                 .IsRequired();
 
             entity.Property(i => i.QuoteId)

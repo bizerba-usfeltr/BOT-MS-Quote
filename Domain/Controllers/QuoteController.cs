@@ -58,7 +58,8 @@ public class QuoteController : ControllerBase
         //     new Dictionary<String, Object> {
         //         [key: "Input"] = quote
         //     });
-        
+        //TODO: figure out when/where/how we get the breakdown info from bd service to complete the quote
+        //TODO: figure out when/where/how we get the customer info from service to complete the quote
         var quoteEntity = _mapper.Map<Quote>(quote);
         try
         {
@@ -93,6 +94,27 @@ public class QuoteController : ControllerBase
     public ActionResult<QuoteOutputDTO> GetQuote(Guid quoteId)
     {
         var quote = _quoteRepository.GetQuote(quoteId);
+        
+        if (quote == null)
+        {
+            return NotFound();
+        }
+        return Ok(_mapper.Map<QuoteOutputDTO>(quote));
+    }
+    
+    /// <summary>
+    /// Get a single quote based on the id of the record in the db
+    /// </summary>
+    /// <param name="quoteNumber">The quote number that users have to reference the quote</param>
+    /// <returns>An action result with the output quote DTO in the response body</returns>
+    /// <response code="200">Returns the quote associated with the given quote id</response>
+    /// <response code="404">A quote with that Id could not be found</response>
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(QuoteOutputDTO))]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [HttpGet("{quoteNumber}", Name = "GetQuoteByNumber")]
+    public ActionResult<QuoteOutputDTO> GetQuoteByNumber(String quoteNumber)
+    {
+        var quote = _quoteRepository.GetQuoteByNumber(quoteNumber);
         
         if (quote == null)
         {
@@ -159,7 +181,8 @@ public class QuoteController : ControllerBase
             {
             
             }
-            
+            //TODO: figure out when/where/how we get the breakdown info from bd service to complete the quote
+            //TODO: figure out when/where/how we get the customer info from service to complete the quote
             QuoteExtentions.InitialRecord(quoteToAdd, this.HttpContext);
             _quoteRepository.AddQuote(quoteToAdd);
             _quoteRepository.Save();
@@ -170,6 +193,8 @@ public class QuoteController : ControllerBase
         var originalQuote = _quoteRepository.GetQuote(quoteId);
         var updateQuote = _mapper.Map(quoteInput, originalQuote);
 
+        //TODO: figure out when/where/how we get the breakdown info from bd service to complete the quote
+        //TODO: figure out when/where/how we get the customer info from service to complete the quote
         QuoteExtentions.AddAuditData(updateQuote, originalQuote, HttpContext);
         _quoteRepository.UpdateQuote(originalQuote);
         _quoteRepository.Save();

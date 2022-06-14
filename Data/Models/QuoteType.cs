@@ -1,8 +1,5 @@
 ﻿namespace Data.Models;
 
-/// <summary>
-/// Types a quote can be assigned as 
-/// </summary>
 public enum QuoteType
 {
     Checkweigher, 

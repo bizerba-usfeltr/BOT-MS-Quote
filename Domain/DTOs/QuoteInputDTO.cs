@@ -96,7 +96,7 @@ public abstract class QuoteInputDTO : IValidatableObject
     /// If a quote is pasted this data it can be recertified by the quoter or pm
     /// </summary>
     [Required]
-    //default DateOnly.FromDateTime(DateTime.Now).AddDays(90)
+    // default DateTime.Today.AddDays(90);
     public DateTime QuoteExpiration{ get; set; }
     
     /// <summary>
@@ -117,7 +117,7 @@ public abstract class QuoteInputDTO : IValidatableObject
     /// <returns></returns>
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
-        if (this.QuoteExpiration !> DateTime.Today)
+        if (DateTime.Compare(this.QuoteExpiration, DateTime.Today) <=0)
         {
             yield return
                 new ValidationResult("The expiration date must be later then the creation or last update date",

@@ -7,6 +7,7 @@ public interface IQuoteRepository
 {
     void AddQuote(Quote quote);
     Quote GetQuote(Guid quoteId);
+    Quote GetQuoteByNumber(String quoteNumber);
     IEnumerable<Quote> GetQuotes();
     IEnumerable<Quote> GetQuotes(QuoteResourceParams quoteResourceParams);
     void UpdateQuote(Quote quote);

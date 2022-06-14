@@ -39,7 +39,7 @@ public class LineItemInputDTO : IValidatableObject
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
-        if (this.Quantity !> 0)
+        if (this.Quantity <= 0)
         {
             yield return
                 new ValidationResult("The quantity for a line item must be greater than zero",
@@ -49,7 +49,7 @@ public class LineItemInputDTO : IValidatableObject
                     });
         }        
         
-        if (this.ItemPrice !> 0)
+        if (this.ItemPrice <= 0)
         {
             yield return
                 new ValidationResult("The price for a line item must be greater than zero",

@@ -34,6 +34,16 @@ public class QuoteRepository : IQuoteRepository
         return _context.Quotes.FirstOrDefault(q => q.QuoteId == quoteId);
     }
     
+    public Quote GetQuoteByNumber(String quoteNumber)
+    {
+        if (string.IsNullOrEmpty(quoteNumber))
+        {
+            throw new ArgumentNullException(nameof(quoteNumber));
+        }
+
+        return _context.Quotes.FirstOrDefault(q => q.QuoteNumber == quoteNumber);
+    }
+    
     public IEnumerable<Quote> GetQuotes()
     {
         return _context.Quotes.ToList();
